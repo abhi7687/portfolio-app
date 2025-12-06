@@ -1,0 +1,11 @@
+{
+  "home": {
+    "title": "Hello, I'm Abhiram",
+    "subtitle": "Mobile & Web Developer"
+  },
+  "sections": {
+    "projects": "Projects",
+    "experience": "Experience",
+    "gallery": "Gallery"
+  }
+}
