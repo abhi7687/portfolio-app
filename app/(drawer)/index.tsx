@@ -2,7 +2,7 @@ import TypeWriter from "@/components/TypeWriter";
 import { View, Text, Image, StyleSheet, Dimensions, Platform } from "react-native";
 import { Fonts } from "@/constants/theme";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 export default function Home() {
     return (
@@ -41,21 +41,22 @@ const styles = StyleSheet.create({
     },
 
     webRowWrapper: {
-        flexDirection: "column",  // default (Android)
+        flexDirection: "column", 
+        width: "100%",
         ...Platform.select({
             web: {
                 flexDirection: "row",
                 width: "90%",
                 justifyContent: "space-evenly",
                 alignItems: "center",
-                marginTop: 40,
+                marginTop: "5%",
             }
         })
     },
 
     heroWrapper: {
-        width: 370,
-        height: 620,
+        width: "88%",
+        height: "82%",
         position: "relative",
         justifyContent: "center",
         alignItems: "center",
@@ -71,8 +72,8 @@ const styles = StyleSheet.create({
 
     orangeShape: {
         position: "absolute",
-        right: -100,
-        top: 5,
+        right: "-30%",
+        top: "5%",
         width: width * 1.6,
         height: width * 1.1,
         backgroundColor: "#FF6A00",
@@ -82,10 +83,10 @@ const styles = StyleSheet.create({
 
         ...Platform.select({
             web: {
-                top: -380,
-                right: 280,
-                width: 500,
-                height: 1040,
+                top: "-50%",
+                right: "40%",
+                width: "80%",
+                height: "120%",
                 borderRadius: 600,
                 transform: [{ rotate: "310deg" }],
             },
@@ -108,8 +109,8 @@ const styles = StyleSheet.create({
 
         ...Platform.select({
             web: {
-                top: -100,
-                right: 40,
+                top: "-22%",
+                right: "2%",
                 width: 420,
                 height: 420,
                 borderRadius: 230,
@@ -125,11 +126,11 @@ const styles = StyleSheet.create({
 
     textContainer: {
         alignItems: "center",
-        marginTop: 10,
+        marginTop: "2%",
 
         ...Platform.select({
             web: {
-                marginTop: -140, 
+                marginTop: "-25%", 
             },
         }),
     },
