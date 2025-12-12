@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet, TouchableOpacity, Linking, Alert } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { scale } from "react-native-size-matters";
 import { fontSize } from "@/utils/fontSize";
+import { Feather } from "@expo/vector-icons";
+import { Alert, Linking, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 export default function InfoRow({
   icon,
@@ -19,17 +18,20 @@ export default function InfoRow({
 
         if (icon === "mail") {
             url = `mailto:${text}`;
+            Linking.openURL(url);
         }
         else if (icon === "phone") {
             url = `tel:${text}`;
-        }
-
-        const supported = await Linking.canOpenURL(url);
-
-        if (supported) {
             Linking.openURL(url);
-        } else {
-            Alert.alert(`Cannot open URL: ${url}`);
+        }
+        else {
+            const supported = await Linking.canOpenURL(url);
+
+            if (supported) {
+                Linking.openURL(url);
+            } else {
+                Alert.alert(`Cannot open URL: ${url}`);
+            }
         }
     }
   return (

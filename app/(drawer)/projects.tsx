@@ -8,7 +8,7 @@ import Loader from "@/components/Loader";
 import { fontSize } from "@/utils/fontSize";
 
 export default function ProjectsScreen() {
-   const projects = useProjects();
+  const projects = useProjects();
 
   if (!projects.length) {
     return (
@@ -22,10 +22,16 @@ export default function ProjectsScreen() {
 
         {projects.map((item) => (
           <View key={item.id} style={styles.card}>
-            
+
             <Text style={styles.title}>{item.title}</Text>
 
-            <Text style={styles.description}>{item.description}</Text>
+            <Text style={styles.descriptionTitle}>Description:</Text>
+
+            {item.description.map((point, index) => (
+              <Text key={index} style={styles.descriptionPoint}>
+                • {point}
+              </Text>
+            ))}
 
             <Text style={styles.techHeader}>Tech Stack:</Text>
 
@@ -59,7 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F5F7FA",
-    paddingVertical: verticalScale(10),
+    paddingVertical: verticalScale(40),
   },
 
   card: {
@@ -68,7 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: moderateScale(16),
     borderRadius: moderateScale(16),
-    marginVertical: verticalScale(40),
+    marginVertical: verticalScale(10),
     elevation: 3,
     shadowColor: "#000",
     shadowOpacity: 0.08,
@@ -83,11 +89,18 @@ const styles = StyleSheet.create({
     marginBottom: verticalScale(6),
   },
 
-  description: {
+  descriptionTitle: {
+    fontSize: fontSize(15),
+    fontWeight: "600",
+    marginBottom: verticalScale(6),
+  },
+
+  descriptionPoint: {
     fontSize: fontSize(14),
     color: "#444",
-    marginBottom: verticalScale(10),
+    marginBottom: verticalScale(4),
     lineHeight: fontSize(20),
+    textAlign: "left",
   },
 
   techHeader: {
