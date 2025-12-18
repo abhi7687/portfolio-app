@@ -6,4 +6,5 @@ export interface Experience {
   startDate: string;
   endDate: string | null;
   technologies: string[];
+  certificateURL: string;
 }

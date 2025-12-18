@@ -1,13 +1,22 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Linking, Pressable } from "react-native";
 import { useExperience } from "../../hooks/useExperience";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
 import { moderateScale, scale, verticalScale } from "react-native-size-matters";
 import Loader from "@/components/Loader";
 import { fontSize } from "@/utils/fontSize";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function ExperienceScreen() {
   const experience = useExperience();
+
+  const openPdf = (url: string) => {
+    try {
+      Linking.openURL(url);
+    } catch (error) {
+      console.error("Failed to open URL:", error);
+    }
+  }
 
   if (!experience.length) {
     return (
@@ -46,6 +55,19 @@ export default function ExperienceScreen() {
                 </View>
               ))}
             </View>
+
+            {item.certificateURL && (
+              <Pressable
+                style={({ pressed }) => [
+                  styles.pdfButton,
+                  pressed && { opacity: 0.85 },
+                ]}
+                onPress={() => openPdf(item.certificateURL)}
+              >
+                <Ionicons name="document-text-outline" size={18} color="#ffffffff" />
+                <Text style={styles.pdfButtonText}>View Certificate</Text>
+              </Pressable>
+            )}
 
           </View>
         ))}
@@ -132,4 +154,20 @@ const styles = StyleSheet.create({
     color: "#FF6A00",
     fontWeight: "600",
   },
+  pdfButton: {
+  flexDirection: "row",
+  alignItems: "center",
+  alignSelf: "flex-start",
+  backgroundColor: "#FF6A00",
+  paddingVertical: verticalScale(8),
+  paddingHorizontal: scale(14),
+  borderRadius: moderateScale(8),
+  marginTop: verticalScale(14),
+},
+pdfButtonText: {
+  color: "#fff",
+  fontSize: fontSize(14),
+  fontWeight: "600",
+  marginLeft: scale(6),
+},
 });
