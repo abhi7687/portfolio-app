@@ -13,9 +13,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/app-icon.png",
-        "backgroundColor": "#FFFFFF" 
+        "backgroundColor": "#FFFFFF",
+        "foregroundImage": "./assets/images/app-icon.png"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
@@ -49,6 +48,7 @@
       "eas": {
         "projectId": "05105310-9a6d-424e-9bd3-6d8f9036eae2"
       }
-    }
+    },
+    "owner": "abhi7687"
   }
 }
