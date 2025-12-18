@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Linking, Pressable } from "react-native";
+import { View, Text, StyleSheet, Linking, Pressable, Platform } from "react-native";
 import { useExperience } from "../../hooks/useExperience";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
@@ -12,7 +12,12 @@ export default function ExperienceScreen() {
 
   const openPdf = (url: string) => {
     try {
-      Linking.openURL(url);
+      if (Platform.OS === "web") {
+        const previewUrl = `https://docs.google.com/gview?url=${encodeURIComponent(url)}&embedded=true`;
+        Linking.openURL(previewUrl);
+      } else {
+        Linking.openURL(url);
+      }
     } catch (error) {
       console.error("Failed to open URL:", error);
     }
